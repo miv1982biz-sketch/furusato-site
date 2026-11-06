@@ -59,6 +59,10 @@
   <div class="result" id="result">
     <div class="big" id="cap"></div>
     <p id="note" style="margin:8px 0 0;"></p>
+    <div style="margin-top:12px">
+      <div style="border:1.5px solid var(--ink);height:24px"><div id="capbar" style="height:100%;background:var(--accent);width:0%"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--sub)"><span>0円</span><span>上限額の大きさ（20万円を満幅とする目安表示）</span><span>200,000円</span></div>
+    </div>
     <table>
       <tr><th>計算の内訳（概算）</th><th>金額</th></tr>
       <tr><td>給与所得（給与所得控除を差し引いた後）</td><td id="r-kyuyo"></td></tr>
@@ -132,10 +136,12 @@
     res.style.display = 'block';
     if (shotokuzei <= 0 || cap <= 2000) {
       document.getElementById('cap').textContent = 'この条件では目安を算出できません';
+      document.getElementById('capbar').style.width = '0%';
       document.getElementById('note').textContent = '住民税の所得割額が小さいため、この簡易計算では控除上限額の目安を出せません。実際の可否は市区町村の案内でご確認ください。';
     } else {
       var capShown = Math.floor(cap / 1000) * 1000;
       document.getElementById('cap').textContent = '控除上限額の目安：約 ' + yen(capShown);
+      document.getElementById('capbar').style.width = Math.min(capShown / 200000 * 100, 100) + '%';
       document.getElementById('note').textContent = 'あくまで概算です。前提と異なる要素（住宅ローン控除など）がある場合は、実際の上限額はこれより小さくなることがあります。';
     }
     document.getElementById('r-kyuyo').textContent = yen(ks);
