@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>控除上限額の目安シミュレーター（給与収入・家族構成の簡易計算）｜限度額ラボ</title>
+<meta name="description" content="ふるさと納税の控除上限額の目安を、給与収入の年収帯と家族構成から計算する簡易シミュレーターです。計算式と前提を明示した概算であり、個別の税務判断は行いません。">
+<link rel="stylesheet" href="../style.css">
+<meta property="og:title" content="控除上限額の目安シミュレーター（給与収入・家族構成の簡易計算）｜限度額ラボ">
+<meta property="og:description" content="ふるさと納税の控除上限額の目安を、給与収入の年収帯と家族構成から計算する簡易シミュレーターです。計算式と前提を明示した概算であり、個別の税務判断は行いません。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://furusato.globe-ent.com/tools/gendogaku-sim.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+<header class="site">
+  <div class="name"><a href="../index.html">限度額ラボ</a></div>
+  <nav class="main">
+    <a href="../articles.html">記事一覧</a>
+    <a href="../tools/gendogaku-sim.html">目安シミュレーター</a>
+  </nav>
+</header>
+<main>
+  <p class="crumb"><a href="../index.html">トップ</a> ＞ 計算ツール</p>
+  <h1>控除上限額の目安シミュレーター</h1>
+  <p>ふるさと納税の控除上限額は、年収だけで決まるものではありません。家族構成や所得控除で変わります。このツールは、給与収入の年収帯と家族構成から、<strong>控除上限額の目安</strong>を計算する簡易版です。入力した数値はブラウザの中だけで処理し、どこにも送信しません。</p>
+
+  <label for="income">給与収入（年収帯）</label>
+  <select id="income" style="width:100%;padding:11px 12px;font-size:16px;border:1.5px solid var(--line);border-radius:10px;margin-top:5px;">
+    <option value="3000000">300万円</option>
+    <option value="4000000">400万円</option>
+    <option value="5000000" selected>500万円</option>
+    <option value="6000000">600万円</option>
+    <option value="7000000">700万円</option>
+    <option value="8000000">800万円</option>
+    <option value="9000000">900万円</option>
+    <option value="10000000">1,000万円</option>
+    <option value="11000000">1,100万円</option>
+    <option value="12000000">1,200万円</option>
+    <option value="13000000">1,300万円</option>
+    <option value="14000000">1,400万円</option>
+    <option value="15000000">1,500万円</option>
+    <option value="17500000">1,750万円</option>
+    <option value="20000000">2,000万円</option>
+  </select>
+
+  <label for="family">家族構成</label>
+  <select id="family" style="width:100%;padding:11px 12px;font-size:16px;border:1.5px solid var(--line);border-radius:10px;margin-top:5px;">
+    <option value="single" selected>独身（配偶者・扶養なし）</option>
+    <option value="spouse">配偶者のみ（配偶者に収入なし）</option>
+    <option value="spouse1">配偶者＋子1人（高校生）</option>
+    <option value="spouse1s">配偶者＋子1人（大学生）</option>
+    <option value="spouse2">配偶者＋子2人（高校生＋大学生）</option>
+  </select>
+
+  <button class="calc" id="run" type="button">目安を計算する</button>
+
+  <div class="result" id="result">
+    <div class="big" id="cap"></div>
+    <p id="note" style="margin:8px 0 0;"></p>
+    <table>
+      <tr><th>計算の内訳（概算）</th><th>金額</th></tr>
+      <tr><td>給与所得（給与所得控除を差し引いた後）</td><td id="r-kyuyo"></td></tr>
+      <tr><td>住民税の所得割額（概算）</td><td id="r-jumin"></td></tr>
+      <tr><td>適用した所得税率（復興特別所得税込み）</td><td id="r-zeiritsu"></td></tr>
+    </table>
+  </div>
+
+  <h2>計算の前提（必ずお読みください）</h2>
+  <ul>
+    <li>これは<strong>目安の計算例</strong>です。あなたの実際の控除上限額を確定させるものではありません。</li>
+    <li>給与所得のみを対象としています。社会保険料は給与収入の15%として概算しています。住民税の調整控除は2,500円として概算しています。</li>
+    <li>次の要素は計算に含めていません：住宅ローン控除、医療費控除、ふるさと納税以外の寄附金、株式・不動産などの所得、配偶者特別控除の細かな段階、住民税の自治体ごとの差異。これらがある場合、実際の上限額は結果と大きく異なることがあります。</li>
+    <li>年収帯が高い場合（配偶者控除の所得要件に触れる帯など）は、誤差が大きくなります。</li>
+    <li>計算の考え方：控除上限額 ≒ 住民税所得割額 × 20% ÷（90% − 所得税率×1.021）＋ 2,000円。結果は1,000円未満を切り捨て、保守的に表示しています。</li>
+    <li>対象年度：2026年時点の制度に基づく計算です。制度が変わった場合は、内容を更新するまで結果を使わないでください。</li>
+    <li>正確な金額の確認は、お住まいの市区町村の案内、または税理士にご確認ください。このツールは個別の税務相談を行うものではありません。</li>
+  </ul>
+  <p class="src">出典の考え方：総務省「ふるさと納税ポータルサイト」の控除上限額の目安の算出方法、所得税・住民税の各控除額は国税庁・総務省の公表資料に基づきます。</p>
+</main>
+<footer class="site">
+  <a href="../about.html">運営者情報・広告方針</a><a href="../privacy.html">プライバシーポリシー</a><a href="../contact.html">お問い合わせ</a>
+  <div>© 限度額ラボ</div>
+</footer>
+<script>
+(function(){
+  function kyuyoShotoku(inc){
+    if (inc <= 1625000) return inc - 550000;
+    if (inc <= 1800000) return inc - (inc*0.4 - 100000);
+    if (inc <= 3600000) return inc - (inc*0.3 + 80000);
+    if (inc <= 6600000) return inc - (inc*0.2 + 440000);
+    if (inc <= 8500000) return inc - (inc*0.1 + 1100000);
+    return inc - 1950000;
+  }
+  function spouseDed(fam){ return fam === 'single' ? 0 : 1; }
+  function fuyo(fam){
+    switch(fam){
+      case 'spouse1': return {j:330000, s:380000};
+      case 'spouse1s': return {j:450000, s:630000};
+      case 'spouse2': return {j:330000+450000, s:380000+630000};
+      default: return {j:0, s:0};
+    }
+  }
+  function zeiritsu(taxable){
+    if (taxable <= 1950000) return 0.05;
+    if (taxable <= 3300000) return 0.10;
+    if (taxable <= 6950000) return 0.20;
+    if (taxable <= 9000000) return 0.23;
+    if (taxable <= 18000000) return 0.33;
+    if (taxable <= 40000000) return 0.40;
+    return 0.45;
+  }
+  function yen(n){ return Math.round(n).toLocaleString('ja-JP') + '円'; }
+  document.getElementById('run').addEventListener('click', function(){
+    var inc = parseInt(document.getElementById('income').value, 10);
+    var fam = document.getElementById('family').value;
+    var ks = kyuyoShotoku(inc);
+    var shaho = inc * 0.15;
+    var hasSpouse = spouseDed(fam);
+    // 配偶者控除：給与所得900万円超（年収約1,095万円超）では段階的に縮小するため、この簡易計算では0として扱い、前提に明記
+    var spouseJ = (hasSpouse && ks <= 9000000) ? 330000 : 0;
+    var spouseS = (hasSpouse && ks <= 9000000) ? 380000 : 0;
+    var f = fuyo(fam);
+    var jKazei = Math.max(0, ks - (430000 + spouseJ + f.j + shaho));
+    var shotokuzei = Math.max(0, Math.floor(jKazei * 0.1 / 100) * 100 - 2500);
+    var sKazei = Math.max(0, ks - (480000 + spouseS + f.s + shaho));
+    var rate = zeiritsu(sKazei) * 1.021;
+    var cap = shotokuzei * 0.2 / (0.9 - rate) + 2000;
+    var res = document.getElementById('result');
+    res.style.display = 'block';
+    if (shotokuzei <= 0 || cap <= 2000) {
+      document.getElementById('cap').textContent = 'この条件では目安を算出できません';
+      document.getElementById('note').textContent = '住民税の所得割額が小さいため、この簡易計算では控除上限額の目安を出せません。実際の可否は市区町村の案内でご確認ください。';
+    } else {
+      var capShown = Math.floor(cap / 1000) * 1000;
+      document.getElementById('cap').textContent = '控除上限額の目安：約 ' + yen(capShown);
+      document.getElementById('note').textContent = 'あくまで概算です。前提と異なる要素（住宅ローン控除など）がある場合は、実際の上限額はこれより小さくなることがあります。';
+    }
+    document.getElementById('r-kyuyo').textContent = yen(ks);
+    document.getElementById('r-jumin').textContent = yen(shotokuzei);
+    document.getElementById('r-zeiritsu').textContent = (rate * 100).toFixed(2) + '%';
+  });
+})();
+</script>
+</body>
+</html>
