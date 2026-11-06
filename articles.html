@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>記事一覧｜限度額ラボ</title>
+<meta name="description" content="限度額ラボの記事一覧。制度の確認、上限額の仕組み、期限と手続きのカテゴリ別に、キーワードで絞り込みもできます。">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="記事一覧｜限度額ラボ">
+<meta property="og:description" content="限度額ラボの記事一覧。制度の確認、上限額の仕組み、期限と手続きのカテゴリ別に、キーワードで絞り込みもできます。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://furusato.globe-ent.com/articles.html">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<header class="site">
+  <div class="name"><a href="index.html">限度額ラボ</a></div>
+  <nav class="main">
+    <a href="articles.html">記事一覧</a>
+    <a href="tools/gendogaku-sim.html">目安シミュレーター</a>
+  </nav>
+</header>
+<main>
+  <h1>記事一覧</h1>
+  <p>カテゴリ別に並べています。キーワードで絞り込むこともできます。</p>
+  <div class="searchbox">
+    <input type="search" id="q" placeholder="キーワードで記事を探す（例：ワンストップ、ポイント、上限額）" aria-label="記事を検索">
+    <p class="src" id="count"></p>
+  </div>
+
+  <section class="cluster">
+    <h2>制度の確認</h2>
+    <a class="card" href="articles/points-rule-2025.html" data-kw="ポイント 付与 禁止 2025年10月 総務省 ポータル ルール変更">
+      <strong>ふるさと納税のポイント付与は2025年10月に終了した — 現在のルール確認</strong>
+      <span>仲介サイトのポイント付与が禁止された経緯と、寄附先の選び方で何が変わったかを公式情報で確認しました。</span>
+      <span class="src">制度確認｜2026年11月6日</span>
+    </a>
+  </section>
+
+  <section class="cluster">
+    <h2>上限額の仕組み</h2>
+    <a class="card" href="articles/gendogaku-shikumi.html" data-kw="控除 上限額 仕組み 所得割 特例分 年収 シミュレーター">
+      <strong>控除上限額の仕組み — なぜ「年収だけ」では決まらないのか</strong>
+      <span>控除の3つの部品と、特例分の上限（所得割額の20%）から、上限額の決まり方を整理します。</span>
+      <span class="src">費用試算｜2026年11月6日</span>
+    </a>
+  </section>
+
+  <section class="cluster">
+    <h2>期限と手続き</h2>
+    <a class="card" href="articles/onestop-kigen.html" data-kw="ワンストップ 特例 申請 期限 1月10日 確定申告 年末 寄附">
+      <strong>ワンストップ特例の申請期限と、年末の寄附で気をつけること</strong>
+      <span>申請書は翌年1月10日必着。5自治体の条件、確定申告をすると特例が使えなくなる点などをまとめました。</span>
+      <span class="src">期限と手続き｜2026年11月6日</span>
+    </a>
+  </section>
+
+  <p class="src" id="noresult" style="display:none">該当する記事がありません。キーワードを変えてお試しください。</p>
+</main>
+<footer class="site">
+  <a href="about.html">運営者情報・広告方針</a><a href="privacy.html">プライバシーポリシー</a><a href="contact.html">お問い合わせ</a>
+  <div>© 限度額ラボ</div>
+</footer>
+<script>
+(function(){
+  var q = document.getElementById('q');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.cluster'));
+  var count = document.getElementById('count');
+  var noresult = document.getElementById('noresult');
+  function apply(){
+    var words = q.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    var visible = 0;
+    cards.forEach(function(c){
+      var text = (c.textContent + ' ' + (c.getAttribute('data-kw')||'')).toLowerCase();
+      var hit = words.every(function(w){ return text.indexOf(w) !== -1; });
+      c.style.display = hit ? '' : 'none';
+      if (hit) visible++;
+    });
+    sections.forEach(function(s){
+      var any = Array.prototype.some.call(s.querySelectorAll('.card'), function(c){ return c.style.display !== 'none'; });
+      s.style.display = any ? '' : 'none';
+    });
+    count.textContent = words.length ? visible + ' 件の記事が見つかりました' : '全 ' + cards.length + ' 記事';
+    noresult.style.display = visible ? 'none' : '';
+  }
+  q.addEventListener('input', apply);
+  apply();
+})();
+</script>
+</body>
+</html>
