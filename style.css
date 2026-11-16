@@ -114,3 +114,12 @@ a.thumbrow:hover .t { color:var(--accent); text-decoration:underline; }
 
 .adbox { border: 1px solid #14663f; padding: 14px 16px; margin: 24px 0; background: #f4f9f5; }
 .adbox p { margin: 6px 0; }
+/* 商品棚（カード形式の広告枠） */
+.shelfbox { border: 1px solid #14663f; padding: 14px 16px; margin: 24px 0; background: #f4f9f5; }
+.shelf { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 12px 0 4px; }
+.prod { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; overflow: hidden; }
+.prod .pimg { width: 100%; display: block; }
+.prod .pb { padding: 12px 16px 16px; display: flex; flex-direction: column; gap: 8px; }
+.prod .pn { font-weight: 700; font-size: 16px; color: var(--accent-dark); }
+.prod ul { margin: 0; padding-left: 1.25em; font-size: 13.5px; color: var(--sub); line-height: 1.85; }
+.prod .cta { display: block; text-align: center; background: var(--accent); color: #fff; font-weight: 700; font-size: 14.5px; line-height: 1.6; padding: 11px 12px; border-radius: 8px; text-decoration: none; }
