@@ -1,15 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
-  <defs>
-    <linearGradient id="goldA" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#F2BC58"/>
-      <stop offset="1" stop-color="#DE9426"/>
-    </linearGradient>
-  </defs>
+  <title>ふるさと納税手帳 公式マーク（両開きの箱・角度開きめ／最終形）</title>
   <circle cx="120" cy="120" r="112" fill="#FAF4E6"/>
-  <path d="M121 62 C132 50 146 48 152 50 C150 62 140 70 126 69 C120 68 119 66 121 62 Z" fill="#14663F"/>
-  <circle cx="120" cy="79" r="17" fill="url(#goldA)"/>
-  <path d="M66 120 L42 94 Q40 88 47 87 L110 100 L112 120 Z" fill="#14663F"/>
-  <path d="M174 120 L198 94 Q200 88 193 87 L130 100 L128 120 Z" fill="#14663F"/>
-  <path d="M64 120 L176 120 L170 190 Q169 198 161 198 L79 198 Q71 198 70 190 Z" fill="#14663F"/>
-  <rect x="113" y="120" width="14" height="77" fill="url(#goldA)"/>
+  <path d="M62.0 128.0 L24.2 59.8 Q19.8 55.4 35.8 55.4 Q51.8 55.4 52.2 59.8 L90.0 128.0 Z" fill="#14663F"/>
+  <path d="M178.0 128.0 L215.8 59.8 Q220.2 55.4 204.2 55.4 Q188.2 55.4 187.8 59.8 L150.0 128.0 Z" fill="#14663F"/>
+  <path d="M62 124 L178 124 L172 196 Q171 203 163 203 L77 203 Q69 203 68 196 Z" fill="#14663F"/>
+  <rect x="113" y="124" width="14" height="72" fill="#F2BC58"/>
+  <g transform="translate(0 -8)">
+    <circle cx="120" cy="100" r="25" fill="#F2BC58"/>
+    <path d="M125 75 C132 62 147 57 156 59 C155 72 145 81 131 81 C125 80 123 78 125 75 Z" fill="#14663F"/>
+  </g>
 </svg>
