@@ -117,9 +117,9 @@ a.thumbrow:hover .t { color:var(--accent); text-decoration:underline; }
 .adbox p { margin: 6px 0; }
 /* 商品棚（カード形式の広告枠） */
 .shelfbox { border: 1px solid #14663f; padding: 14px 16px; margin: 24px 0; background: #f4f9f5; }
-.shelf { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 12px 0 4px; }
+.shelfbox .shelf { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 12px 0 4px; }
 .prod { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; overflow: hidden; }
-.prod .pimg { width: 100%; display: block; }
+.prod .pimg { width: 100%; height: auto; display: block; }
 .prod .pb { padding: 12px 16px 16px; display: flex; flex-direction: column; gap: 8px; }
 .prod .pn { font-weight: 700; font-size: 16px; color: var(--accent-dark); }
 .prod ul { margin: 0; padding-left: 1.25em; font-size: 13.5px; color: var(--sub); line-height: 1.85; }
@@ -145,8 +145,8 @@ body.wide h2 { font-size:21px; }
 .newsline a { color:var(--ink); text-decoration:none; }
 .newsline a:hover { text-decoration:underline; }
 
-/* 正方形タイルの特集棚 */
-.shelf { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; margin:16px 0 6px; }
+/* 正方形タイルの特集棚（トップ＝body.wide 専用。商品棚 .shelfbox .shelf とは分離） */
+body.wide .shelf { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; margin:16px 0 6px; }
 .tile { text-decoration:none; color:inherit; display:block; min-width:0; }
 .tile img { width:100%; height:auto; aspect-ratio:1/1; object-fit:cover; display:block; border-radius:10px; }
 .tile .tl { font-weight:700; font-size:15px; display:block; margin-top:8px; line-height:1.5; color:var(--accent-dark); }
@@ -182,13 +182,13 @@ body.list .cluster { display:grid; grid-template-columns:repeat(3,minmax(0,1fr))
 body.list .cluster h2 { grid-column:1/-1; margin:34px 0 0; }
 body.list .cluster:first-of-type h2 { margin-top:20px; }
 body.list .card.thumbrow { flex-direction:column; gap:0; border:1px solid var(--line); border-radius:12px; padding:0; overflow:hidden; margin:0; background:#fff; }
-body.list .card.thumbrow img { width:100%; height:auto; aspect-ratio:3/2; }
+body.list .card.thumbrow img { width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; }
 body.list .card.thumbrow .txt { padding:12px 14px 14px; }
 body.list .card.thumbrow strong { font-size:15px; }
 body.list .card.thumbrow span { font-size:13px; }
 
 @media (max-width:640px) {
-  .shelf { grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; }
+  body.wide .shelf { grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; }
   .rankgrid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:11px; }
   .genres { grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
   .trio { grid-template-columns:minmax(0,1fr); }
